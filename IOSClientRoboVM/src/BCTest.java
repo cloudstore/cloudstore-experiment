@@ -7,6 +7,7 @@ import org.bouncycastle.crypto.paddings.BlockCipherPadding;
 import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher;
 import org.bouncycastle.crypto.paddings.ZeroBytePadding;
 import org.bouncycastle.crypto.params.KeyParameter;
+import org.robovm.apple.coredata.CoreData;
 
 public class BCTest {
     public BCTest() {
@@ -14,7 +15,7 @@ public class BCTest {
     }
     
     public byte[] encryptAES256(byte[] input, byte[] key) throws InvalidCipherTextException {
-        assert key.length == 32; // 32 bytes == 256 bits
+        //assert key.length == 32; // 32 bytes == 256 bits
         CipherParameters cipherParameters = new KeyParameter(key);
 
         /*
