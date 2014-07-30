@@ -3,6 +3,7 @@ package co.codewizards.cloudstore.local.persistence;
 import static co.codewizards.cloudstore.core.util.HashUtil.sha1;
 import static co.codewizards.cloudstore.core.util.Util.assertNotNull;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.UUID;
 
@@ -24,41 +25,50 @@ import javax.jdo.annotations.Query;
 import co.codewizards.cloudstore.core.util.UrlUtil;
 
 @PersistenceCapable
-@Inheritance(strategy=InheritanceStrategy.SUPERCLASS_TABLE)
-@Discriminator(strategy=DiscriminatorStrategy.VALUE_MAP, value="RemoteRepository")
-//@Index(name="RemoteRepository_remoteRoot", members="remoteRoot") // Indexing a CLOB with Derby throws an exception :-( [should be a warning, IMHO for portability reasons]
-@Index(name="RemoteRepository_remoteRootSha1", members="remoteRootSha1")
+@Inheritance(strategy = InheritanceStrategy.SUPERCLASS_TABLE)
+@Discriminator(strategy = DiscriminatorStrategy.VALUE_MAP, value = "RemoteRepository")
+// @Index(name="RemoteRepository_remoteRoot", members="remoteRoot") // Indexing
+// a CLOB with Derby throws an exception :-( [should be a warning, IMHO for
+// portability reasons]
+//@Index(name="RemoteRepository_remoteRootSha1", members="remoteRootSha1")
 @Queries({
-	@Query(name="getRemoteRepository_repositoryId", value="SELECT UNIQUE WHERE this.repositoryId == :repositoryId"),
-	@Query(name="getRemoteRepository_remoteRootSha1", value="SELECT UNIQUE WHERE this.remoteRootSha1 == :remoteRootSha1")
-})
-public class RemoteRepository extends Repository implements AutoTrackLocalRevision {
-	//private static final Logger logger = LoggerFactory.getLogger(RemoteRepository.class);
+		@Query(name = "getRemoteRepository_repositoryId", value = "SELECT UNIQUE WHERE this.repositoryId == :repositoryId"),
+		@Query(name = "getRemoteRepository_remoteRootSha1", value = "SELECT UNIQUE WHERE this.remoteRootSha1 == :remoteRootSha1") })
+public class RemoteRepository extends Repository implements
+		AutoTrackLocalRevision {
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(RemoteRepository.class);
 
-	@Column(jdbcType="CLOB")
-	private URL remoteRoot;
+	// @Column(jdbcType="CLOB")
+	private String remoteRoot;
 
 	private String remoteRootSha1;
 
 	private long localRevision;
 
-	@Persistent(nullValue=NullValue.EXCEPTION)
+	@Persistent(nullValue = NullValue.EXCEPTION)
 	private String localPathPrefix;
 
-	public RemoteRepository() { }
+	public RemoteRepository() {
+	}
 
 	public RemoteRepository(UUID repositoryId) {
 		super(repositoryId);
 	}
 
 	public URL getRemoteRoot() {
-		return remoteRoot;
+		try {
+			return new URL(remoteRoot);
+		} catch (MalformedURLException x) {
+			throw new RuntimeException(x);
+		}
 	}
 
 	public void setRemoteRoot(URL remoteRoot) {
 		remoteRoot = UrlUtil.canonicalizeURL(remoteRoot);
-		this.remoteRoot = remoteRoot;
-		this.remoteRootSha1 = remoteRoot == null ? null : sha1(remoteRoot.toExternalForm());
+		this.remoteRoot = remoteRoot.toExternalForm();
+		this.remoteRootSha1 = this.remoteRoot == null ? null
+				: sha1(this.remoteRoot);
 	}
 
 	public String getRemoteRootSha1() {
@@ -69,12 +79,14 @@ public class RemoteRepository extends Repository implements AutoTrackLocalRevisi
 	public long getLocalRevision() {
 		return localRevision;
 	}
+
 	@Override
 	public void setLocalRevision(long localRevision) {
 		if (this.localRevision != localRevision) {
-			
-//			if (logger.isDebugEnabled())
-//				logger.debug("setLocalRevision: repositoryId={} old={} new={}", getRepositoryId(), this.localRevision, localRevision);
+
+			// if (logger.isDebugEnabled())
+			// logger.debug("setLocalRevision: repositoryId={} old={} new={}",
+			// getRepositoryId(), this.localRevision, localRevision);
 
 			this.localRevision = localRevision;
 		}
@@ -83,10 +95,13 @@ public class RemoteRepository extends Repository implements AutoTrackLocalRevisi
 	public String getLocalPathPrefix() {
 		return localPathPrefix;
 	}
+
 	public void setLocalPathPrefix(String localPathPrefix) {
 		assertNotNull("localPathPrefix", localPathPrefix);
 		if (!localPathPrefix.isEmpty() && !localPathPrefix.startsWith("/"))
-			throw new IllegalArgumentException("localPathPrefix must start with '/' but does not: " + localPathPrefix);
+			throw new IllegalArgumentException(
+					"localPathPrefix must start with '/' but does not: "
+							+ localPathPrefix);
 
 		this.localPathPrefix = localPathPrefix;
 	}

@@ -13,6 +13,7 @@ import javax.jdo.annotations.NullValue;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.listener.StoreCallback;
 
 /**
  * Base class of all persistence-capable (a.k.a. entity) classes.
@@ -23,7 +24,7 @@ import javax.jdo.annotations.PrimaryKey;
 public abstract class Entity implements AutoTrackChanged
 {
 	@PrimaryKey
-	@Persistent(valueStrategy=IdGeneratorStrategy.NATIVE)
+	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
 	private long id = -1;
 
 	// We always initialise this, though the value might be overwritten when DataNucleus loads
@@ -111,5 +112,12 @@ public abstract class Entity implements AutoTrackChanged
 		assertNotNull("created", created);
 		this.changed = changed;
 	}
+	
+//	@Override
+//	public void jdoPreStore(){
+//		if(id == -1){
+//			id = IdGenerator.next();
+//		}
+//	}
 
 }

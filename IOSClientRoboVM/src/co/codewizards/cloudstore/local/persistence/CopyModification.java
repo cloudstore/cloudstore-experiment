@@ -17,7 +17,7 @@ import javax.jdo.annotations.Queries;
 import javax.jdo.annotations.Query;
 
 @PersistenceCapable
-@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
+//@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 @Discriminator(strategy=DiscriminatorStrategy.VALUE_MAP, value="CopyModification")
 @Indices({
 	@Index(name="CopyModification_fromPathSha1", members={"fromPathSha1"}),
@@ -33,14 +33,14 @@ import javax.jdo.annotations.Query;
 public class CopyModification extends Modification {
 
 	@Persistent(nullValue=NullValue.EXCEPTION, defaultFetchGroup="true")
-	@Column(jdbcType="CLOB")
+	//@Column(jdbcType="CLOB")
 	private String fromPath;
 
 	@Persistent(nullValue=NullValue.EXCEPTION)
 	private String fromPathSha1;
 
 	@Persistent(nullValue=NullValue.EXCEPTION, defaultFetchGroup="true")
-	@Column(jdbcType="CLOB")
+	//@Column(jdbcType="CLOB")
 	private String toPath;
 
 	@Persistent(nullValue=NullValue.EXCEPTION)

@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.jdo.JDOHelper;
 import javax.jdo.annotations.Discriminator;
 import javax.jdo.annotations.DiscriminatorStrategy;
 import javax.jdo.annotations.Index;

@@ -31,7 +31,7 @@ import javax.jdo.annotations.Query;
 public class DeleteModification extends Modification {
 
 	@Persistent(nullValue=NullValue.EXCEPTION, defaultFetchGroup="true")
-	@Column(jdbcType="CLOB")
+	//@Column(jdbcType="CLOB")
 	private String path;
 
 	@Persistent(nullValue=NullValue.EXCEPTION)

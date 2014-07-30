@@ -3,6 +3,8 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 
+import test.PersistenceTest;
+
 public class IOSClientRoboVM extends UIApplicationDelegateAdapter {
 
 	private UIWindow window = null;
@@ -19,7 +21,12 @@ public class IOSClientRoboVM extends UIApplicationDelegateAdapter {
 		buttonCreate.addOnTouchUpInsideListener(new UIControl.OnTouchUpInsideListener() {
 			@Override
 			public void onTouchUpInside(UIControl control, UIEvent event) {
-				new Test().create();
+				try {
+					new PersistenceTest().getModifications();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
