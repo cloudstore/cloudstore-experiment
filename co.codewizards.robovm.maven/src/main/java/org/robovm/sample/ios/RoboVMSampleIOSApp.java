@@ -9,7 +9,6 @@ import test.PersistenceTest;
 public class RoboVMSampleIOSApp extends UIApplicationDelegateAdapter {
 
     private UIWindow window = null;
-    private int clickCount = 0;
 
     @Override
     public boolean didFinishLaunching(UIApplication application,

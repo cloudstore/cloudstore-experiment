@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.robovm.eclipse.ROBOVM_COCOA_TOUCH_CONTAINER"/>
+	<classpathentry kind="con" path="org.robovm.eclipse.ROBOVM_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/bcpg-jdk16-1.46.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/bcprov-jdk16-1.46.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-accessplatform-rdbms-4.0.0-release/deps/ehcache-core-2.2.0.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-accessplatform-rdbms-4.0.0-release/deps/geronimo-jta_1.1_spec-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-accessplatform-rdbms-4.0.0-release/deps/guava-15.0.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-accessplatform-rdbms-4.0.0-release/deps/h2-1.3.168.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-accessplatform-rdbms-4.0.0-release/deps/javax.persistence-2.1.0.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-accessplatform-rdbms-4.0.0-release/deps/jdo-api-3.1-rc1.jar" sourcepath="/Users/wilk/.m2/repository/javax/jdo/jdo-api/3.1-rc1/jdo-api-3.1-rc1-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-accessplatform-rdbms-4.0.0-release/deps/joda-time-1.6.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/.m2/repository/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/assertj-core-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-rdbms-master/target/datanucleus-rdbms-4.0.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-core-master/target/datanucleus-core-4.0.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Downloads/datanucleus-api-jdo-master/target/datanucleus-api-jdo-4.0.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Documents/workspace/cloudstore-android/co.codewizards.cloudstore.droid/libs/log4j-over-slf4j-1.7.5.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Documents/workspace/cloudstore-android/co.codewizards.cloudstore.droid/libs/logback-classic-1.0.13.jar"/>
+	<classpathentry kind="lib" path="/Users/wilk/Documents/workspace/cloudstore-android/co.codewizards.cloudstore.droid/libs/logback-core-1.0.13.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

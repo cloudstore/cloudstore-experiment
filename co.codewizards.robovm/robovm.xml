@@ -1,0 +1,29 @@
+<config>
+  <executableName>${app.executable}</executableName>
+  <mainClass>${app.mainclass}</mainClass>
+  <os>ios</os>
+  <arch>thumbv7</arch>
+  <resources>
+    <resource>
+      <directory>resources</directory>
+    </resource>
+  </resources>
+  <target>ios</target>
+  <iosInfoPList>Info.plist.xml</iosInfoPList>
+  <forceLinkClasses>
+  	<pattern>org.datanucleus.**</pattern>
+  	<pattern>org.datanucleus.store.rdbms.**</pattern>
+  	<pattern>org.bouncycastle.jce.provider.JDKMessageDigest$SHA1</pattern>
+  	<pattern>SQLite.JDBC2z.**</pattern>
+  	<pattern>SQLite.**</pattern>
+  	<pattern>SQLite.JDBCDriver</pattern>
+  	<pattern>org.apache.log4j.**</pattern>
+  	<pattern>javax.jdo.**</pattern>
+  	<pattern>javax.naming.**</pattern>
+  	<pattern>java.util.logging.ConsoleHandler</pattern>
+	<pattern>java.util.logging.SimpleFormatter</pattern>
+	<pattern>org.bouncycastle.jce.provider.JDKKeyStore</pattern>
+	<pattern>org.bouncycastle.jce.provider.JDKKeyPairGenerator$RSA</pattern>
+	<pattern>co.codewizards.cloudstore.local.LocalRepoManagerFactoryImpl</pattern>
+  </forceLinkClasses>
+</config>
